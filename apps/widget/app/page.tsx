@@ -1,17 +1,15 @@
 import { Button } from "@workspace/ui/components/button"
-import { add } from "@workspace/math/add"
-import { Input } from "@workspace/ui/components/input"
+
 export default function Page() {
   return (
     <div className="flex min-h-svh p-6">
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
         <div>
-          <h1 className="font-medium">Hello app/web</h1>
+          <h1 className="font-medium">Hello app/widget</h1>
           <Button className="mt-2">Button</Button>
-          <span className="text-md block font-semibold">{add(1, 2)}</span>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          <Input />
+        <div className="text-muted-foreground font-mono text-xs">
+          (Press <kbd>d</kbd> to toggle dark mode)
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-// apps/web/app/providers.tsx
 "use client"
 
 import { ConvexProvider, ConvexReactClient } from "convex/react"

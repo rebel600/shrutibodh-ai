@@ -18,7 +18,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL || "")
+  const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL
+  if (!convexUrl) {
+    throw new Error("NEXT_PUBLIC_CONVEX_URL is not set")
+  }
+
+  const convex = new ConvexReactClient(convexUrl)
+
   return (
     <html
       lang="en"

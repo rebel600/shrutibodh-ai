@@ -5,17 +5,28 @@ import { api } from "@workspace/backend/api"
 import { Button } from "@workspace/ui/components/button"
 
 export default function Page() {
-  const users = useQuery(api.users.getMany, { name: "test" })
+  const users = useQuery(api.users.getMany, {} as any)
   const addUser = useMutation(api.users.addUser)
 
+  const handleAddUser = async () => {
+    try {
+      await addUser({ name: "Kavita" })
+    } catch (error) {
+      console.error("Failed to add user", error)
+    }
+  }
+
   return (
-    <div className="flex min-h-screen p-6 text-accent">
-      <div className="flex max-w-auto  flex-col gap-4 text-sm justify-center items-center leading-loose bg-amber-100">
+    <div className="flex min-h-screen p-6 text-amber-500">
+      <div className="max-w-auto flex flex-col items-center justify-center gap-4 bg-amber-100 text-sm leading-loose">
         <p>Hello app/widget</p>
         <div className="">
-        <Button variant={"secondary"} onClick={() => addUser({ name: "Kavita" })}>
-          Add User
-        </Button>
+          <Button
+            variant={"secondary"}
+            onClick={handleAddUser}
+          >
+            Add User
+          </Button>
         </div>
         <p>{JSON.stringify(users, null, 2)}</p>
       </div>

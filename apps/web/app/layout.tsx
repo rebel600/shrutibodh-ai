@@ -1,10 +1,7 @@
-"use client"
 import { Geist_Mono, Inter } from "next/font/google"
 import "@workspace/ui/globals.css"
-// import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils"
-
-import { ConvexProvider, ConvexReactClient } from "convex/react"
+import { Providers } from "./providers/providers"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -18,13 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL
-  if (!convexUrl) {
-    throw new Error("NEXT_PUBLIC_CONVEX_URL is not set")
-  }
-
-  const convex = new ConvexReactClient(convexUrl)
-
   return (
     <html
       lang="en"
@@ -37,7 +27,7 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ConvexProvider client={convex}>{children}</ConvexProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

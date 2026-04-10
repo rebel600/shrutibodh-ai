@@ -1,18 +1,34 @@
+"use client"
+
+import { useMutation, useQuery } from "convex/react"
+import { api } from "@workspace/backend/api"
 import { Button } from "@workspace/ui/components/button"
-import { add } from "@workspace/math/add"
-import { Input } from "@workspace/ui/components/input"
+
 export default function Page() {
+  const users = useQuery(api.users.getMany, {} as any)
+  const addUser = useMutation(api.users.addUser)
+
+  const handleAddUser = async () => {
+    try {
+      await addUser({ name: "Ram" })
+    } catch (error) {
+      console.error("Failed to add user", error)
+    }
+  }
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Hello app/web</h1>
-          <Button className="mt-2">Button</Button>
-          <span className="text-md block font-semibold">{add(1, 2)}</span>
+    <div className="flex min-h-screen p-6 text-amber-100">
+      <div className="max-w-auto flex flex-col items-center justify-center gap-4 bg-amber-500 text-sm leading-loose">
+        <p>Hello app/web</p>
+        <div className="">
+          <Button
+            variant={"secondary"}
+            onClick={handleAddUser}
+          >
+            Add User
+          </Button>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          <Input />
-        </div>
+        <p>{JSON.stringify(users, null, 2)}</p>
       </div>
     </div>
   )

@@ -16,7 +16,10 @@
   },
   "types": "./convex/_generated/api.d.ts",
   "devDependencies": {
+    "@types/node": "^25.2.3",
     "@workspace/typescript-config": "workspace:*",
+    "i": "^0.3.7",
+    "npm": "^11.12.1",
     "typescript": "latest"
   },
   "dependencies": {

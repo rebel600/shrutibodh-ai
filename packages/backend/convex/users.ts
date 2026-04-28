@@ -12,6 +12,7 @@ export const getMany = query({
 export const addUser = mutation({
   args: { name: v.string() },
   handler: async (ctx: any, { name }: { name: string }) => {
+    throw new Error("Testing Sentry!");
     const identity = await ctx.auth.getUserIdentity()
     if (identity === null) {
       throw new Error("Not authenticated")

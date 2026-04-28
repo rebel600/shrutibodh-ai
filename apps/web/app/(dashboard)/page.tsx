@@ -25,8 +25,8 @@ export default function Page() {
         <OrganizationSwitcher hidePersonal={true} />
       </div>
     </div>
-      <div className="flex min-h-screen p-6 text-amber-100">
-        <div className="max-w-auto flex flex-col items-center justify-center gap-4 bg-amber-500 text-sm leading-loose">
+      <div className="flex items-center justify-center p-6 bg-amber-500 text-amber-100">
+        <div className="max-w-auto flex flex-col items-center justify-center gap-4 text-sm leading-loose">
           <p>Hello app/web</p>
           <div className="">
             <Button variant={"secondary"} onClick={handleAddUser}>

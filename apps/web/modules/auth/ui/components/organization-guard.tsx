@@ -1,7 +1,6 @@
 "use client"
 
-import { useOrganization } from "@clerk/nextjs"
-import { AuthLayout } from "@/modules/auth/ui/layouts/auth-layout"
+import { SignIn, useOrganization, useUser } from "@clerk/nextjs"
 import { OrgSelectionView } from "@/modules/auth/ui/views/org-selection-view"
 
 export const OrganizationGuard = ({
@@ -9,14 +8,19 @@ export const OrganizationGuard = ({
 }: {
   children: React.ReactNode
 }) => {
+  const { isLoaded, isSignedIn } = useUser()
   const { organization } = useOrganization()
 
+  if (!isLoaded) {
+    return null
+  }
+
+  if (!isSignedIn) {
+    return <SignIn />
+  }
+
   if (!organization) {
-    return (
-      <AuthLayout>
-        <OrgSelectionView />
-      </AuthLayout>
-    )
+    return <OrgSelectionView />
   }
   return <div>{children}</div>
 }

@@ -28,7 +28,7 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ClerkProvider>
+        <ClerkProvider signInForceRedirectUrl="/org-selection">
           <Providers>
             {children}
           </Providers>
